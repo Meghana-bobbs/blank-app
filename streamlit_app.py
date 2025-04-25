@@ -11,14 +11,14 @@ DATA_FILE = "team_tasks.xlsx"
 # --- Initialize or Load Data ---
 def load_data(sheet_name):
     if os.path.exists(DATA_FILE):
-        return pd.read_excel(DATA_FILE, sheet_name=sheet_name)
+        return pd.read_excel(DATA_FILE, sheet_name=sheet_name, dtype=str)
     else:
         return pd.DataFrame({
-            "Task": [""],
-            "Status": [""],
-            "PIC": [""],
-            "Due Date": [""],
-            "Done": [False],
+            "Task": pd.Series([""], dtype="string"),
+            "Status": pd.Series([""], dtype="string"),
+            "PIC": pd.Series([""], dtype="string"),
+            "Due Date": pd.Series([""], dtype="string"),
+            "Done": pd.Series([False], dtype="bool"),
         })
 
 def save_data(priority_df, monthly_df, daily_df, followups_df):
